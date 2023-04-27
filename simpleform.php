@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require("session.php");
 require("connect-db2.php");
 // include("connect-db.php");
 require("dbinfo-connect.php");

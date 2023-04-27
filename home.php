@@ -1,4 +1,9 @@
+<?php
+require("session.php");
+echo "user logged in: ";
+echo $_SESSION['username'];
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
