@@ -13,14 +13,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       
       foreach ($results as $item){
         $pw = $item['password'];
+        $email = $item['email'];
       }
 
       if(count($results) > 0){
         if($pw == $_POST['password']){
           header("Location: home.php");
           $_SESSION['username'] = $_POST['username'];
+          $_SESSION['email'] = $email;
         }
       }
+      if(count($results) > 0 && (($pw != $_POST['password']))){
+        echo "Wrong Credentials. Try again!";
+      }
+      
+      
 
 
 
@@ -55,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 </svg>
                 <form action="index.php" method="post">
                   <input type="text" name="username" id="" class="form-control my-4 py-2" placeholder="Username" />
-                  <input type="text" name="password" id="" class="form-control my-4 py-2" placeholder="Password" />
+                  <input type="password" name="password" id="" class="form-control my-4 py-2" placeholder="Password" />
                   <input type = "submit" class = "btn btn-success" name = "loginbtn" value="Submit" title="click to login" />
                   <div class="text-center mt-3">
                     <a href="#" class="nav-link">Don't Have An Account Yet? Sign Up</a>

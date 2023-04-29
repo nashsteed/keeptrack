@@ -26,16 +26,30 @@ function addFriend($name, $major, $year)
 
 }
 
-function selectAllDatabaseInfo()
+function selectAllDatabaseInfo($ID)
 {
     global $db;
-    $query = "select * from databaseInfo";
+    $query = "select * from databaseInfo D, items I where I.dbID = D.dbID and D.dbID =:ID";
     $statement = $db->prepare($query);
+    $statement->bindValue(':ID', $ID);
     $statement->execute();
     $results = $statement->fetchAll();
     $statement->closeCursor();
     return $results;
 }
+
+function findDatabaseInfoForUser($inemail)
+{
+    global $db;
+    $query = "select dbID from users where email =:inemail";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':inemail', $inemail);
+    $statement->execute();
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
+    return $results;
+}
+
 
 function deleteFriend($friend_to_delete)
 {

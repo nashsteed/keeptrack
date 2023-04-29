@@ -1,8 +1,7 @@
 <?php
 require("session.php");
-echo "user logged in: ";
-echo $_SESSION['username'];
-
+//require("dfinfo-connect.php");
+//echo "user logged in: ";
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,20 +21,25 @@ echo $_SESSION['username'];
    
 </head>
 <body>
-    <?php include("header.html") ?>
+    <?php include("header.php");
+    //echo "user logged in: ";
+    $user = $_SESSION['username'];
+    //echo $_SESSION['email'];
+    // $databases = findDatabasesForUser($user);
+    ?>
     <div>
         <div class ="p-3">
-        <h1>     Hello, _____!  <span class="badge bg-secondary" style="float: right"></span></h1>
+        <h1>     Hello, <?php echo $user ?>!  <span class="badge bg-secondary" style="float: right"></span></h1>
         <h3>     View your databases!  <span class="badge bg-secondary" style="float: right"></span>
-        <a> Or create your first!</a>
+        <a href="#"> Or create your first!</a>
     </h1>
         
     <div class="card" style="width: 18rem;">
   <img src="3d-delivery-box-icon-png.png" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">Your Database</h5>
+    <p class="card-text"></p>
+    <a href="viewDB.php" class="btn btn-primary">View</a>
   </div>
 </div>
 </div>
