@@ -48,7 +48,7 @@
 // $dbname = 'your-computingID';
 // $dsn = "mysql:host=$host;dbname=$dbname";
 $username = 'ucq8hz'; 
-$password = 'Milliegirl22';
+$password = 'cs4750nash';
 $host = 'mysql01.cs.virginia.edu';
 $dbname = 'ucq8hz';
 $dsn = "mysql:host=$host;dbname=$dbname";

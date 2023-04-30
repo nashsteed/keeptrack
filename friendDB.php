@@ -13,15 +13,27 @@ require("connect-db2.php");
 $username = $_SESSION['username'];
 $inemail = $_SESSION['email'];
 $ID = findDatabaseInfoForUser($inemail);
+$myid = $ID;
 $id = $ID;
 foreach ($ID as $item){
     $id = $item['dbID'];
+    $myid = $item['uID'];
   }
+
+$results = findFriend($myid);
+$id = 0;
+foreach ($results as $item){
+    $id = $item['dbID'];
+  }
+
 $databaseInfo = selectAllDatabaseInfo($id);
 $dbName = "no";
 foreach ($databaseInfo as $item){
     $dbname = $item['dbName'];
   }
+if($dbname == 'ucq8hz'){
+    $dbname = "No shared tables yet!";
+}
   //echo $dbname;
 
 if(!empty($_POST['addbtn']) && ($_POST['addbtn'] == "Add")){
@@ -66,15 +78,15 @@ if(!empty($_POST['searchbtn']) && ($_POST['searchbtn'] == "Search")){
     <p>&nbsp;&nbsp;</p>
         <div> 
         <h3>&nbsp;&nbsp;Search for Items </h3>  
-  <form class="float-right" action="viewDB.php" method="post">
-    <input class="form-control mr-auto" name="search" type="search" placeholder="Search Item Name" aria-label="Search">
+  <form class="float-right" action="friendDB.php" method="post">
+    <input class="form-control mr-auto" name="search" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-success my-2 my-sm-0" name ="searchbtn" type="submit" value="Search">Search</button>
     <button class="btn btn-primary my-2 my-sm-0" type="submit">Show All</button>
   </form>
 </div>
 <div>
 <p>&nbsp;&nbsp;</p>
-  <h1>&nbsp;&nbsp;<?php echo $username ?>'s Table: <?php echo $dbname ?> </h1>  
+  <h1>&nbsp;&nbsp;<?php echo $username ?>'s Shared Table: <?php echo $dbname ?> </h1>  
     <div class="row justify-content-center">  
     <table class="table table-condensed" style="width:70%">
     <thead class="thead-dark">

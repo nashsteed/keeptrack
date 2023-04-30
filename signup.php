@@ -11,21 +11,35 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
   if(!empty($_POST['signupbtn']) && ($_POST['signupbtn'] == "Sign Up")){
     $results = selectUserRow2($_POST['username'],$_POST['email']);
+    $test = 0;
     if (count($results) > 0){
        //header("Location: signup.php");
-       echo "Try again!";
+        echo "User exists with credentials. Try again!";
        $test = 1;
     }
     if($test != 1){
     echo "here";
-    $dbID = 100;
     $database = createnewandfinddbID($_POST['dbname'],$_POST['loclist']);
-    foreach ($database as $item){
-        $dbID = $item['dbID'];
-    }
+    $dbname = $_POST['dbname'];
+    $ID = findDatabaseIDForUser($dbname);
+    $dbID = $ID;
+foreach ($ID as $item){
+    $dbID = $item['dbID'];
+  }
     signup($_POST['email'],$_POST['username'],$_POST['password'],$_POST['firstname'],$_POST['lastname'],$_POST['street'],$_POST['city'],intval($_POST['zipcode']),$_POST['state'],$dbID);
     $_SESSION['username'] = $_POST['username'];
     $_SESSION['email'] = $_POST['email'];
+
+    if($_POST['template'] == 'Garage'){
+        populateGarage($dbID);
+    }
+    if($_POST['template'] == 'Office'){
+        populateOffice($dbID);
+    }
+    if($_POST['template'] == 'Kitchen'){
+        populateKitchen($dbID);
+    }
+
     header("Location: home.php");
     }
   }
@@ -69,6 +83,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   <input type="text" name="state" id="" class="form-control my-4 py-2" placeholder="State" />
                   <input type="text" name="dbname" id="" class="form-control my-4 py-2" placeholder="Your Table Name" />
                   <input type="text" name="loclist" id="" class="form-control my-4 py-2" placeholder="Locations of your belongings (ex: closet, drawer,..)" />
+                  <input type="text" name="template" id="" class="form-control my-4 py-2" placeholder="Follow a template? (options: Garage, Office, Kitchen)" />
                   <input type = "submit" class = "btn btn-success" name = "signupbtn" value="Sign Up" title="click to login" />
                   <div class="text-center mt-3">
                     <a href="signup.php" class="nav-link">Don't Have An Account Yet? Sign Up</a>
