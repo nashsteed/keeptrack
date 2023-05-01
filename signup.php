@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 foreach ($ID as $item){
     $dbID = $item['dbID'];
   }
-    signup($_POST['email'],$_POST['username'],$_POST['password'],$_POST['firstname'],$_POST['lastname'],$_POST['street'],$_POST['city'],intval($_POST['zipcode']),$_POST['state'],$dbID);
+    signup($_POST['email'],$_POST['username'],($_POST['password']),$_POST['firstname'],$_POST['lastname'],$_POST['street'],$_POST['city'],intval($_POST['zipcode']),$_POST['state'],$dbID);
     $_SESSION['username'] = $_POST['username'];
     $_SESSION['email'] = $_POST['email'];
 

@@ -95,7 +95,7 @@ if(!empty($_POST['searchbtn']) && ($_POST['searchbtn'] == "Search")){
         <td><?php echo $item['itemID']; ?></td>
         <td><?php echo $item['itemName']; ?></td>
         <td><?php echo $item['location']; ?></td>
-        <td><a href= <?php echo $item['image']; ?>> Image </a></td>
+        <td><a href= <?php echo $item['image']; ?> target="_blank"> Image </a></td>
         <td><?php echo $item['description']; ?></td>
         <td><?php echo $item['quantity']; ?></td>
         <td><?php echo $item['adjList']; ?></td>

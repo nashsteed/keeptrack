@@ -12,25 +12,30 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $results = selectUserRow($_POST['username']);
       
       foreach ($results as $item){
-        $pw = $item['password'];
+        $pw = htmlspecialchars($item['password']);
         $email = $item['email'];
       }
+      $hash = password_hash($pw, PASSWORD_BCRYPT);
+
+      echo 'hash = ';
+      echo $hash;
+      echo '<br>';
+      echo 'pw = ';
+      echo $pw;
+      echo '<br>';
+      echo 'pw = ';
+      echo $_POST['password'];
 
       if(count($results) > 0){
-        if($pw == $_POST['password']){
+        if(password_verify($_POST['password'], $pw)){
           header("Location: home.php");
           $_SESSION['username'] = $_POST['username'];
           $_SESSION['email'] = $email;
         }
       }
-      if(count($results) > 0 && (($pw != $_POST['password']))){
+      if(count($results) > 0 && (!password_verify($_POST['password'], $pw))){
         echo "Wrong Credentials. Try again!";
       }
-      
-      
-
-
-
   }
 }
 

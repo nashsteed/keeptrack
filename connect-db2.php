@@ -39,6 +39,12 @@
 // $host = 'localhost:3306';           // default phpMyAdmin port = 3306
 // $dbname = 'your-database-name';
 // $dsn = "mysql:host=$host;dbname=$dbname";  
+
+// $username = 'root';
+// $password = '';
+// $host = 'localhost:3306';           // default phpMyAdmin port = 3306
+// $dbname = '4750project';
+// $dsn = "mysql:host=$host;dbname=$dbname";  
 ////////////////////////////////////////////
 
 /** S23, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on CS server) **/
@@ -47,6 +53,7 @@
 // $host = 'mysql01.cs.virginia.edu';
 // $dbname = 'your-computingID';
 // $dsn = "mysql:host=$host;dbname=$dbname";
+
 $username = 'ucq8hz'; 
 $password = 'cs4750nash';
 $host = 'mysql01.cs.virginia.edu';

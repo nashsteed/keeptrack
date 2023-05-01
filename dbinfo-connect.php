@@ -180,7 +180,8 @@ function signup($email, $username, $password, $firstname, $lastname, $street, $c
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->bindValue(':username', $username);
-    $statement->bindValue(':password',$password);
+    $pwd = password_hash($password, PASSWORD_BCRYPT);
+    $statement->bindValue(':password',$pwd);
     $statement->bindValue(':firstname',$firstname);
     $statement->bindValue(':lastname',$lastname);
     $statement->bindValue(':street',$street);
