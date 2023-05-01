@@ -1,9 +1,9 @@
 <?php
 
 require("dbinfo-connect.php");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 include("session.php");
 require("connect-db2.php");
 // include("connect-db.php");
@@ -69,26 +69,37 @@ if(!empty($_POST['searchbtn']) && ($_POST['searchbtn'] == "Search")){
     
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-  <link rel="icon" type="image/png" href="db.png" />
+  <link rel="icon" type="image/png" href="images/db.png" />
    
 </head>
 
 <body>
     <?php include("header.php"); ?>
     <p>&nbsp;&nbsp;</p>
-        <div> 
-        <h3>&nbsp;&nbsp;Search for Items </h3>  
-  <form class="float-right" action="friendDB.php" method="post">
-    <input class="form-control mr-auto" name="search" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-success my-2 my-sm-0" name ="searchbtn" type="submit" value="Search">Search</button>
-    <button class="btn btn-primary my-2 my-sm-0" type="submit">Show All</button>
-  </form>
+    <div class="row justify-content-center"> 
+            <div class="col-md-8 mb-3">
+                <h3 class="row justify-content-left">&nbsp;&nbsp; Search for Items: </h3>  
+                <form class="row justify-content-center" action="viewDB.php" method="post">
+                    <div class="row justify-content-center">
+                        <input class="form-control mr-auto" name="search" type="search" placeholder="Search Item Name" aria-label="Search">
+                        <div class="row justify-content-left">
+                            <div class="col-auto">
+                                <button class="btn btn-success my-2 my-sm-0 mr-2" name ="searchbtn" type="submit" value="Search">Search</button>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary my-2 my-sm-0 mr-2" type="submit">Show All</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 </div>
 <div>
 <p>&nbsp;&nbsp;</p>
-  <h1>&nbsp;&nbsp;<?php echo $username ?>'s Shared Table: <?php echo $dbname ?> </h1>  
     <div class="row justify-content-center">  
     <table class="table table-condensed" style="width:70%">
+    <caption>Shared Table: <?php echo $dbname ?></caption>
     <thead class="thead-dark">
     <tr style="background-color:#d49e7e" color="white">
          <th>itemID</th>  

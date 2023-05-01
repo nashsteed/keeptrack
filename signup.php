@@ -1,11 +1,11 @@
 <?php
 require("session.php");
 require("connect-db2.php");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
 require("dbinfo-connect.php");
 
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
@@ -18,29 +18,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
        $test = 1;
     }
     if($test != 1){
-    echo "here";
-    $database = createnewandfinddbID($_POST['dbname'],$_POST['loclist']);
-    $dbname = $_POST['dbname'];
-    $ID = findDatabaseIDForUser($dbname);
-    $dbID = $ID;
-foreach ($ID as $item){
-    $dbID = $item['dbID'];
-  }
-    signup($_POST['email'],$_POST['username'],($_POST['password']),$_POST['firstname'],$_POST['lastname'],$_POST['street'],$_POST['city'],intval($_POST['zipcode']),$_POST['state'],$dbID);
-    $_SESSION['username'] = $_POST['username'];
-    $_SESSION['email'] = $_POST['email'];
+        // echo "here";
+        $database = createnewandfinddbID($_POST['dbname'],$_POST['loclist']);
+        $dbname = $_POST['dbname'];
+        $ID = findDatabaseIDForUser($dbname);
+        $dbID = $ID;
+        foreach ($ID as $item){
+            $dbID = $item['dbID'];
+        }
+        signup($_POST['email'],$_POST['username'],($_POST['password']),$_POST['firstname'],$_POST['lastname'],$_POST['street'],$_POST['city'],intval($_POST['zipcode']),$_POST['state'],$dbID);
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['email'] = $_POST['email'];
 
-    if($_POST['template'] == 'Garage'){
-        populateGarage($dbID);
-    }
-    if($_POST['template'] == 'Office'){
-        populateOffice($dbID);
-    }
-    if($_POST['template'] == 'Kitchen'){
-        populateKitchen($dbID);
-    }
+        if($_POST['template'] == 'Garage'){
+            populateGarage($dbID);
+        }
+        if($_POST['template'] == 'Office'){
+            populateOffice($dbID);
+        }
+        if($_POST['template'] == 'Kitchen'){
+            populateKitchen($dbID);
+        }
 
-    header("Location: home.php");
+        header("Location: home.php");
     }
   }
 }
@@ -66,7 +66,7 @@ foreach ($ID as $item){
           <div class="col-12 col-sm-7 col-md-6 m-auto">
             <div class="card border-0 shadow">
               <div class="card-body">
-                <img src="keepTracklogo.png" width = 200></a>
+                <img src="images/keepTracklogo.png" width = 200></a>
                 <svg class="mx-auto my-3" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -86,8 +86,7 @@ foreach ($ID as $item){
                   <input type="text" name="template" id="" class="form-control my-4 py-2" placeholder="Follow a template? (options: Garage, Office, Kitchen)" />
                   <input type = "submit" class = "btn btn-success" name = "signupbtn" value="Sign Up" title="click to login" />
                   <div class="text-center mt-3">
-                    <a href="signup.php" class="nav-link">Don't Have An Account Yet? Sign Up</a>
-                    <a href="index.php" class="nav-link">Have an account? Login</a>
+                    <a href="login.php" class="nav-link">Have an account? Login</a>
                   </div>
                 </form>
               </div>

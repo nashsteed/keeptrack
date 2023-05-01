@@ -4,7 +4,7 @@ require("session.php");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
   if(!empty($_POST['logoutbtn']) && ($_POST['logoutbtn'] == "Log Out")){
-      header("Location: index.php");
+      header("Location: login.php");
           $_SESSION['username'] = NULL;
         }
     
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="home.php" style="font-size: 26px;" style="font-family: Brush Script MT;">
-                        <img src="keepTracklogo.png" width = 200>
+                        <img src="images/keepTracklogo.png" width = 200>
                     </a>
                     <button disabled="true"> Logged in as <?php echo $_SESSION['username']?> </button>
                     <button
