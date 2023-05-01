@@ -23,6 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <a class="navbar-brand" href="home.php" style="font-size: 26px;" style="font-family: Brush Script MT;">
                         <img src="keepTracklogo.png" width = 200>
                     </a>
+                    <button disabled="true"> Logged in as <?php echo $_SESSION['username']?> </button>
                     <button
                     class="navbar-toggler"
                     type="button"

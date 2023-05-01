@@ -58,23 +58,22 @@ foreach ($databaseInfo as $item){
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
   <link rel="icon" type="image/png" href="keepTracklogo.png" />
-   
+  <?php include("header.php");?>
 </head>
 <body>
-    <?php include("header.php");
-    //echo "user logged in: ";
-    ?>
-    <div style="text-align:center">
-    <form action="loan.php" method="post">
-    <input type="text" width="50" size="75" name="email" class="form-control my-4 py-2" placeholder="enter friend's email" />
-    <input type="text" width="50" size="75" name="itemID" class="form-control my-4 py-2" placeholder="itemID of item the friend will borrow" />
-    <input type = "submit" onclick="return confirm('Are you sure?')" name = "loanbtn" value="Loan Item" class = "btn btn-primary" />
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <form action="loan.php" method="post">
+                <input type="text" width="50" size="75" name="email" class="form-control my-4 py-2" placeholder="Enter friend's email here" />
+                <input type="text" width="50" size="75" name="itemID" class="form-control my-4 py-2" placeholder="itemID of item the friend will borrow" />
+                <input type = "submit" onclick="return confirm('Are you sure?')" name = "loanbtn" value="Loan Item" class = "btn btn-primary" />
+            </form>
+        </div>
 
     <p>&nbsp;&nbsp;</p>
-  <h1>&nbsp;&nbsp;<?php echo $username ?>'s Table: <?php echo $dbname ?> </h1>  
     <div class="row justify-content-center">  
     <table class="table table-condensed" style="width:70%">
+    <caption><?php echo $dbname?>: <?php echo $_SESSION['username']?>'s items</caption>
     <thead class="thead-dark">
     <tr style="background-color:#d49e7e" color="white">
          <th>itemID</th>  
@@ -93,7 +92,7 @@ foreach ($databaseInfo as $item){
         <td><?php echo $item['itemID']; ?></td>
         <td><?php echo $item['itemName']; ?></td>
         <td><?php echo $item['location']; ?></td>
-        <td><a href= <?php echo $item['image']; ?>> Image </a></td>
+        <td><a href= <?php echo $item['image']; ?> target="_blank"> Image </a></td>
         <td><?php echo $item['description']; ?></td>
         <td><?php echo $item['quantity']; ?></td>
         <td><?php echo $item['adjList']; ?></td>
