@@ -1,0 +1,14 @@
+#Use PHP 7.4 runtime 
+
+runtime: php74 
+
+# defaults to "serve index.php" 
+#entrypoint: serve front-controller.php
+
+handlers: 
+- url: /(.*\.png)
+  mime_type: image/png
+  static_files: images/\1
+  upload: images/(.*\.png)
+ 
+ 
