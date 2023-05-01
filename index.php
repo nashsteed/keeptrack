@@ -17,24 +17,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       }
       $hash = password_hash($pw, PASSWORD_BCRYPT);
 
-      echo 'hash = ';
-      echo $hash;
-      echo '<br>';
-      echo 'pw = ';
-      echo $pw;
-      echo '<br>';
-      echo 'pw = ';
-      echo $_POST['password'];
-
-      if(count($results) > 0){
-        if(password_verify($_POST['password'], $pw)){
-          header("Location: home.php");
-          $_SESSION['username'] = $_POST['username'];
-          $_SESSION['email'] = $email;
-        }
-      }
-      if(count($results) > 0 && (!password_verify($_POST['password'], $pw))){
-        echo "Wrong Credentials. Try again!";
+      if(count($results) > 0 && password_verify($_POST['password'], $pw)){
+        header("Location: home.php");
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['email'] = $email;
+      } else if(count($results) > 0 && (!password_verify($_POST['password'], $pw))){
+        echo "<script type='text/javascript'>"; 
+        echo "alert('Wrong credentials, try again!');";
+        echo "</script>";
+      } else if(count($results) == 0){
+        echo "<script type='text/javascript'>"; 
+        echo "alert('An account with that username does not exist. Please double check your credentials and try again, or sign up below!');";
+        echo "</script>";
+      } else {
+        echo "<script type='text/javascript'>"; 
+        echo "alert('It seems that an error occured! Please try again or contact site administration.');";
+        echo "</script>";
       }
   }
 }
@@ -50,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
 
-    <title>Keep Track Login Form</title>
+    <title>Keep Track Login</title>
     <!-- https://play.tailwindcss.com/yfLiDlhcNv -->
   </head>
   <body>
